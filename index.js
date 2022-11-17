@@ -19,17 +19,7 @@ const GameBoard = (e)=>{
             e.target.textContent = 'O'
         }
     }
-
     console.log(gameBoard)
-    // if (currentPlayer == playerOne){
-    //     gameBoard.push('x')
-    //     displayPlayer.textContent = `Your Turn ${currentPlayer}`
-    // } else if (currentPlayer == playerTwo){
-    //     gameBoard.push('o')
-    //     displayPlayer.textContent = `Your Turn ${currentPlayer}`
-    // }
-    // console.log(gameBoard)
-    // currentPlayer = playerTwo
 }
 
 const DisplayController = (()=>{
