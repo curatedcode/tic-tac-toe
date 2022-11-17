@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Marhey:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@700&display=swap');
+
+body {
+    background-color: #eeeee4;
+    font-family: 'Source Sans Pro',sans-serif, arial;
+    user-select: none;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    font-family: 'Marhey',arial,sans-serif;
+    font-weight: 700;
+}
+
+.centered {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.swapped-boxes {
+    margin-top: 50px;
+    border-radius: 6px;
+    padding: 5px 40px;
+    color: #fff;
+    font-size: 25px;
+    border: 2px solid;
+}
+
+.buttons {
+    transition-duration: 0.3s;
+}
+
+.buttons:hover {
+    box-shadow: 0px 2px 15px black;
+    cursor: pointer;
+    translate: 0 -5px;
+}
+
+.start-button {
+    background-color: #1e81b0;
+    border: 2px solid #1e81b0;
+}
+
+.start-button:hover {
+    background-color: #063970;
+    border-color: #063970;
+}
+
+.display-player-box {
+    display: flex;
+    background-color: #34495e;
+    border: 2px solid #34495e;
+    visibility: hidden;
+}
+
+.grid {
+    background-color: #34495e;
+    color: #fff;
+    display: grid;
+    height: 500px;
+    width: 500px;
+    grid-template: repeat(3,1fr)/repeat(3,1fr);
+    font-size: 80px;
+    font-family: 'Permanent Marker',arial,sans-serif !important;
+    top: 50%;
+    border: 6px solid #2c3e50;
+    border-radius: 10px;
+}
+
+.box {
+    border: 6px solid #2c3e50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.give-up-button {
+    position: fixed;
+    bottom: 10px;
+    background-color: #990000;
+    color: #fff;
+    padding: 5px 10px;
+    border: 2px solid #990000;
+    border-radius: 6px;
+    font-size: 18px;
+    visibility: hidden;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    transform: scale(1.1);
+    visibility: hidden;
+    opacity: 0;
+}
+
+.modal-content {
+    top: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #eeeee4;
+    padding: 10px 30px;
+}
+
+.buttons-container {
+    display: flex;
+    gap: 30px;
+}
+
+.confirm-header {
+    color: black;
+}
+
+.continue-button {
+    margin: 10px 0 5px;
+    padding: 5px 20px;
+    background-color: gray;
+    border-color: gray;
+    font-size: 16px;
+}
+
+.confirm-button {
+    margin: 10px 0 5px;
+    background-color: #990000;
+    border-color: #990000;
+    padding: 5px 20px;
+    font-size: 16px;
+}
+
+.mode-content {
+    display: flex;
+    flex-direction: column;
+    top: 45%;
+    background-color: #eeeee4;
+    padding: 30px 50px;
+    gap: 20px;
+    align-items: center;
+}
+
+.mode-header {
+    color: #000;
+}
+
+.pvp-mode {
+    background-color: #990000;
+    border-color: #990000;
+    margin: 0;
+}
+
+.pve-mode {
+    background-color: #063970;
+    border-color: #063970;
+    margin: 0;
+}
+
+.show-modal {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}

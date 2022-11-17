@@ -4,19 +4,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
     <link rel="stylesheet" href="style.css">
-    <title>title</title>
+    <title>Tic-Tac-Toe</title>
 </head>
 <body>
     <header>
-        <h1>title</h1>
+        Tic-Tac-Toe
     </header>
     <main>
-        <h2>Page Title</h2>
+        <div class="start-button centered swapped-boxes buttons">Play Game</div>
+        <div class="display-player-box centered swapped-boxes"></div>
+        <div class="grid centered">
+            <div class="box box-0">X</div>
+            <div class="box box-1">O</div>
+            <div class="box box-2">-</div>
+            <div class="box box-3">X</div>
+            <div class="box box-4">-</div>
+            <div class="box box-5">X</div>
+            <div class="box box-6">-</div>
+            <div class="box box-7">X</div>
+            <div class="box box-8">O</div>
+        </div>
+        <div class="give-up-button centered buttons">Restart</div>
+        <div class="modal quit-container">
+            <div class="modal-content centered swapped-boxes">
+                <div class="confirm-header">Are you sure?</div>
+                <div class="buttons-container">
+                    <div class="continue-button buttons swapped-boxes">Continue</div>
+                    <div class="confirm-button buttons swapped-boxes">Give Up</div>
+                </div>
+            </div>
+        </div>
+        <div class="mode-container modal">
+            <div class="mode-content centered swapped-boxes">
+                <div class="mode-header">Choose Your Mode</div>
+                <div class="buttons-container">
+                    <div class="pvp-mode swapped-boxes buttons">PvP</div>
+                    <div class="pve-mode swapped-boxes buttons">PvE</div>
+                </div>
+            </div>
+        </div>
     </main>
-    <footer>
-        <p>&copy;</p>
-    </footer>
 </body>
 </html>
