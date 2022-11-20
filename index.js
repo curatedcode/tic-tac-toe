@@ -1,68 +1,95 @@
-const gameBoard = ['','','','','','','','','']
 let iterationCount = 0
+let gameBoard = ['','','','','','','','','']
 
-const GameBoard = (e)=>{    
-    const gridBox = document.getElementsByClassName('grid')[0]
+const GameBoard = (e)=>{
     const gridPieces = document.querySelectorAll('div.box')
-    console.log(gridPieces.length)
-    if (e.target.textContent == 'X' || e.target.textContent == 'O'){
+    if (e.target.textContent === 'X' || e.target.textContent === 'O'){
         e.target.classList.add('shake')
         setTimeout(function(){e.target.classList.remove('shake')},300)
-    } else {
+    } else if (e.target.textContent === ''){
         e.target.classList.add('depress')
         setTimeout(function(){e.target.classList.remove('depress')},300)
         if (iterationCount %2 == 0){
             updateGameBoard('X')
-            UpdatePlayer('Player 1')
+            UpdatePlayer('Player 2')
+            
         } else {
             updateGameBoard('O')
-            UpdatePlayer('Player 2')
+            UpdatePlayer('Player 1')
         }
     }
     function updateGameBoard(gameVariable){
-        for(i=0;i<gridPieces.length;i++){
+        for(let i=0;i<gridPieces.length;i++){
             if(e.target == gridPieces[i]){
                 gameBoard.splice(i, 0,gameVariable)
                 e.target.textContent = gameVariable
             }
         }
     }
-    if (iterationCount >= 3){
-        if (!gameBoard[0] == '' && gameBoard[0] == gameBoard[1] && gameBoard[1] == gameBoard[2]){console.log('win 1')}
-        else if (!gameBoard[3] == '' && gameBoard[3] == gameBoard[4] && gameBoard[4] == gameBoard[5]){console.log('win 2')}
-        else if (!gameBoard[6] == '' && gameBoard[6] == gameBoard[7] && gameBoard[7] == gameBoard[8]){console.log('win 3')}
-        else if (!gameBoard[0] == '' && gameBoard[0] == gameBoard[3] && gameBoard[3] == gameBoard[6]){console.log('win 4')}
-        else if (!gameBoard[1] == '' && gameBoard[1] == gameBoard[4] && gameBoard[4] == gameBoard[7]){console.log('win 5')}
-        else if (!gameBoard[2] == '' && gameBoard[2] == gameBoard[5] && gameBoard[5] == gameBoard[8]){console.log('win 6')}
-        else if (!gameBoard[0] == '' && gameBoard[0] == gameBoard[4] && gameBoard[4] == gameBoard[8]){console.log('win 7')}
-        else if (!gameBoard[2] == '' && gameBoard[2] == gameBoard[4] && gameBoard[4] == gameBoard[6]){console.log('win 8')}
-    }
     iterationCount++
-    console.log(gameBoard)
+    if (iterationCount > 4){checkForWin()}
+}
+
+const checkForWin = ()=>{
+    const gameBoardGroupOne = [gameBoard[0],gameBoard[1],gameBoard[2]],
+    gameBoardGroupTwo = [gameBoard[3],gameBoard[4],gameBoard[5]],
+    gameBoardGroupThree = [gameBoard[6],gameBoard[7],gameBoard[8]],
+    gameBoardGroupFour = [gameBoard[0],gameBoard[3],gameBoard[6]],
+    gameBoardGroupFive = [gameBoard[1],gameBoard[4],gameBoard[7]],
+    gameBoardGroupSix = [gameBoard[2],gameBoard[5],gameBoard[8]],
+    gameBoardGroupSeven = [gameBoard[0],gameBoard[4],gameBoard[8]],
+    gameBoardGroupEight = [gameBoard[2],gameBoard[4],gameBoard[6]]
+    function allTheSame(arr){
+        let isEmpty = false
+        for(let i=0;i<arr.length;i++){
+            if(arr[i] === ''){
+                console.log(arr[i])
+                isEmpty = true
+                return false
+            }
+            if (isEmpty === false){
+               return new Set(arr).size === 1
+            }
+        }
+    }
+    if (allTheSame(gameBoardGroupOne) === true){
+        console.log('winner')
+    } else if (allTheSame(gameBoardGroupTwo) === true){
+        console.log('winner 2')
+    } else if (allTheSame(gameBoardGroupThree) === true){
+        console.log('winner 3')
+    } else if (allTheSame(gameBoardGroupFour) === true){
+        console.log('winner 4')
+    } else if (allTheSame(gameBoardGroupFive) === true){
+        console.log('winner 5')
+    } else if (allTheSame(gameBoardGroupSix) === true){
+        console.log('winner 6')
+    } else if (allTheSame(gameBoardGroupSeven) === true){
+        console.log('winner 7')
+    } else if (allTheSame(gameBoardGroupEight) === true){
+        console.log('winner 8')
+    }
+    
 }
 
 const UpdatePlayer = (player) => {
     const displayPlayer = document.getElementsByClassName('display-player-box')[0]
     displayPlayer.textContent = `Your Turn ${player}`
-    console.log('updated player')
 }
 
 const DisplayController = (()=>{
-    const displayPlayerBox = document.getElementsByClassName('display-player-box')[0]
-    const startButton = document.getElementsByClassName('start-button')[0]
-    const giveUpButton = document.getElementsByClassName('give-up-button')[0]
-    const giveUpButtonConfirm = document.getElementsByClassName('confirm-button')[0]
-    const quitModal = document.getElementsByClassName('quit-container')[0]
-    const modeModal = document.getElementsByClassName('mode-container')[0]
-    const pvpButton = document.getElementsByClassName('pvp-mode')[0]
-    const pveButton = document.getElementsByClassName('pve-mode')[0]
-    const contentBoxes = document.querySelectorAll('div.box')
+    const displayPlayerBox = document.getElementsByClassName('display-player-box')[0],
+    startButton = document.getElementsByClassName('start-button')[0],
+    giveUpButton = document.getElementsByClassName('give-up-button')[0],
+    giveUpButtonConfirm = document.getElementsByClassName('confirm-button')[0],
+    quitModal = document.getElementsByClassName('quit-container')[0],
+    modeModal = document.getElementsByClassName('mode-container')[0],
+    pvpButton = document.getElementsByClassName('pvp-mode')[0],
+    pveButton = document.getElementsByClassName('pve-mode')[0],
+    contentBoxes = document.querySelectorAll('div.box')
     let isRestarted = false
     contentBoxes.forEach(box => box.addEventListener('click',e=>{GameBoard(e)}))
-    startButton.addEventListener('click', () => {
-        contentBoxes.forEach(box => box.style.pointerEvents = 'all')
-        modeModal.classList.add('show-modal')
-    })
+    startButton.addEventListener('click',()=>{modeModal.classList.add('show-modal')})
     pvpButton.addEventListener('click', switchToModal)
     pveButton.addEventListener('click', switchToModal)
     giveUpButton.addEventListener('click',()=>{quitModal.classList.add('show-modal')})
@@ -80,12 +107,13 @@ const DisplayController = (()=>{
         modeModal.classList.remove('show-modal')
         displayPlayerBox.style.visibility = 'visible' 
         giveUpButton.style.visibility = 'visible'
+        setTimeout(()=>{contentBoxes.forEach(box => box.style.pointerEvents = 'all')},1350)
         emptyGameBoard()
     }
 
     function emptyGameBoard(){
         const timeout = 150
-        for(i=0;i<contentBoxes.length;i++){
+        for(let i=0;i<contentBoxes.length;i++){
             emptyBoxes(i)
         }
         function emptyBoxes(i){
@@ -107,3 +135,8 @@ const DisplayController = (()=>{
     }
 })()
 
+
+const test = ['1','','3']
+const test2 = [test[0],test[2]]
+
+console.log(test2[0])
