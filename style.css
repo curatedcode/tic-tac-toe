@@ -148,22 +148,6 @@ header {
     align-items: center;
 }
 
-.mode-header {
-    color: #000;
-}
-
-.pvp-mode {
-    background-color: #990000;
-    border-color: #990000;
-    margin: 0;
-}
-
-.pve-mode {
-    background-color: #063970;
-    border-color: #063970;
-    margin: 0;
-}
-
 .show-modal {
     opacity: 1;
     visibility: visible;
@@ -192,4 +176,9 @@ header {
 
 .depress {
     box-shadow: inset 0 2px 16px  2px black;
+}
+
+.win-modal {
+    padding: 15px 40px;
+    color: #404040;
 }
